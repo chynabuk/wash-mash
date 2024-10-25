@@ -1,0 +1,6 @@
+<img class="image" [src]="machine().status === 'Occupied' ? 'assets/img/machine-animation.gif' : 'assets/img/machine.png'"/>
+<h2>{{machine().name}}</h2>
+<p>Status: <span [className]="machine().status === 'Occupied' ? 'occupied' : 'free'">{{machine().status}}</span></p>
+@if(machine().time){
+    <p >Left: {{(getDifferenceOfTime(machine().time!))}}</p>
+}

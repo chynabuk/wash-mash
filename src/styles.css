@@ -1,1 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #f4f8fE;
+    padding: 0px 120px;
+}
+
+.washmachine {
+    width: 150px;
+    height: 180px;
+    border-radius: 5px;
+    background-color: #fef9e7;
+    border: 1px solid #111111;
+    position: relative;
+}
+
+.washmachine::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    border-radius: 5px;
+    border: 1px solid #111111;
+    bottom: 10px;
+    left: 10px;
+}
+
+.washmachine::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    border-top: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+    top: 40px;
+    left: 0px;
+}
+
+.washmachine-display {
+    position: absolute;
+    width: 40%;
+    height: 20px;
+    top: 10px;
+    left: 10px;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #111111;
+}
+
+.washmachine-buttons {
+    position: absolute;
+    width: 35%;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.washmachine-button {
+    height: 14px;
+    width: 14px;
+    background-color: #fdebd0;
+    border-radius: 50%;
+    border: 1px solid #111111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.washmachine-button:after {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #f0b27a;
+}
+
+.washmachine-drum {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border-radius: 50%;
+    top: 55%;
+    left: 50%;
+    border: 1px solid #111111;
+    transform: translate(-50%, -50%);
+    background-color: #f0b27a;
+}
+
+.washmachine-drum-animation {
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    border-radius: 50%;
+    top: 55%;
+    left: 50%;
+    border: 1px solid #111111;
+    transform: translate(-50%, -50%);
+    background-color: #666666;
+}
+
+.active .washmachine-drum-animation {
+    background-image: url("/assets/img/drum.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.washmachine-number {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #111111;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,5 @@
+@for (machine of machines(); track $index) {
+    <app-washmachine [machine]="machine"></app-washmachine>
+
+    <!-- <app-item [machine]="machine" (updateTime)="onTimeUpdate($event)" (updateStatus)="onStatusUpdate($event)"/> -->
+}
