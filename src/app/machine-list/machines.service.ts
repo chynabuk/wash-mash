@@ -45,11 +45,13 @@ export class MachinesService {
       type: MachineType.d
 
     });
+    const now =  new Date();
+    now.setMinutes(now.getMinutes() + 1);
     this.addMachine({
       name: '3',
       status: Status.o,
-      type: MachineType.d
-
+      type: MachineType.d,
+      time: now
     });
     
   }
@@ -89,14 +91,17 @@ export class MachinesService {
 
   private addMachine(machine: Machine){
     if(machine.status === Status.o){
-      machine.time = this.generateTime();
+      if(!machine.time){
+        console.log(machine.time, machine.name);
+        machine.time = this.generateTime();
+      }
     }
     this.machines.update((oldValues) => [...oldValues, machine]);
   }
 
   private generateTime(){
     const now = new Date();
-    now.setMinutes(now.getMinutes() + Math.random() * (2 - 1) + 1);
+    now.setMinutes(now.getMinutes() + Math.random() * (90 - 8) + 8);
     return now;
   }
 }

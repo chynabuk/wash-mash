@@ -69,8 +69,8 @@ export class WashmachineComponent implements OnInit {
 
 getDifferenceOfTime(dateTime: Date){
   const now = new Date();
-  console.log('machine endTime', dateTime);
-  console.log('current time', now);
+  // console.log('machine endTime', dateTime);
+  // console.log('current time', now);
   const diffMilliseconds  = dateTime.getTime() - now.getTime();
 
   if(diffMilliseconds > 0){
