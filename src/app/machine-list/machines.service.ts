@@ -14,39 +14,39 @@ export class MachinesService {
 
   private populate(): void{
     this.addMachine({
-      name: 'Washing machine 1',
+      name: '1',
       status: Status.f,
       type: MachineType.w
     });
     this.addMachine({
-      name: 'Washing machine 2',
-      status: Status.f,
-      type: MachineType.w
-    });
-    this.addMachine({
-      name: 'Washing machine 3',
+      name: '2',
       status: Status.o,
       type: MachineType.w
     });
     this.addMachine({
-      name: 'Washing machine 4',
+      name: '3',
+      status: Status.o,
+      type: MachineType.w
+    });
+    this.addMachine({
+      name: '4',
       status: Status.f,
       type: MachineType.w
     });
     this.addMachine({
-      name: 'Dryer machine 1',
+      name: '1',
       status: Status.f,
       type: MachineType.d
 
     });
     this.addMachine({
-      name: 'Dryer machine 2',
+      name: '2',
       status: Status.o,
       type: MachineType.d
 
     });
     this.addMachine({
-      name: 'Dryer machine 3',
+      name: '3',
       status: Status.o,
       type: MachineType.d
 
@@ -96,7 +96,7 @@ export class MachinesService {
 
   private generateTime(){
     const now = new Date();
-    now.setMinutes(now.getMinutes() + Math.random() * (90 - 8) + 8);
+    now.setMinutes(now.getMinutes() + Math.random() * (2 - 1) + 1);
     return now;
   }
 }

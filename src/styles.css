@@ -1,6 +1,11 @@
 body{
     background-color: #f4f8fE;
-    padding: 0px 120px;
+    padding: 0px;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .washmachine {
@@ -78,6 +83,58 @@ body{
     width: 10px;
     border-radius: 50%;
     background-color: #f0b27a;
+}
+
+.washmachine-door {
+    width: 90px;
+    height: 80px;
+    position: absolute;
+    border-radius: 15px;
+    top: 55%;
+    left: 50%;
+    border: 1px solid #111111;
+    transform: translate(-50%, -50%);
+    background-color: #fdebd0;
+}
+
+.washmachine-door-animation {
+    width: 70px;
+    height: 65px;
+    position: absolute;
+    border-radius: 10px;
+    top: 55%;
+    left: 50%;
+    border: 1px solid #111111;
+    transform: translate(-50%, -50%);
+    background-color: #f0b27a;
+}
+
+.washmachine-door-animation::before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 4px;
+    border-radius: 5px;
+    background-color: #111111;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.active .washmachine-door-animation::after {
+    content: "";
+    display: block;
+    height: 100px;
+    width: 90%;
+    position: absolute;
+    top: -170px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-image: url("/assets/img/steam.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .washmachine-drum {

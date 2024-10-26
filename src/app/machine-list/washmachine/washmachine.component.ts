@@ -1,6 +1,6 @@
 import { Component, ElementRef, input, Input, OnInit, output, Renderer2 } from '@angular/core';
 import { interval } from 'rxjs';
-import { Machine, Status } from '../machine.model';
+import { Machine, MachineType, Status } from '../machine.model';
 
 @Component({
   selector: 'app-washmachine',
@@ -29,18 +29,28 @@ export class WashmachineComponent implements OnInit {
     // setTimeout(() => {
     //   this.turnOff();
     // }, 3000); // 3 seconds for demo
-    var washer = createWashmachine(1);
+    if (this.machine().type == MachineType.w) {
+      var washer = createWashmachine(1);
+    } else {
+      var washer = createDrier(1);
+    }
     this.el.nativeElement.parentElement.appendChild(washer);
+
+    var washer_number = washer.querySelector(".washmachine-number");
+    if (washer_number != null) {
+      washer_number.innerHTML = this.machine().name;
+    }
+    
     let flag = false;
     interval(1000).subscribe(() => {
             if(this.machine().time){
               var display = washer.querySelector(".washmachine-display");
               if (display != null) {
                 display.innerHTML = this.getDifferenceOfTime(this.machine().time!);
-                if (!flag && display.innerHTML != "") {
+                if (!flag && display.innerHTML != "Free") {
                   turnOn(washer);
                   flag = true;
-                } else if (flag && display.innerHTML == "") {
+                } else if (flag && display.innerHTML == "Free") {
                   turnOff(washer);
                   flag = false;
                 }
@@ -77,7 +87,7 @@ getDifferenceOfTime(dateTime: Date){
     });
   }
 
-  return '';
+  return 'Free';
 }
 
 
@@ -106,6 +116,7 @@ function createWashmachine(number: number) {
 
   let washmachine_display = document.createElement("div");
   washmachine_display.classList.add("washmachine-display");
+  washmachine_display.innerHTML = "Free";
   washmachine.appendChild(washmachine_display);
 
   let washmachine_buttons = document.createElement("div");
@@ -129,6 +140,41 @@ function createWashmachine(number: number) {
 
   let washmachine_drum_animation = document.createElement("div");
   washmachine_drum_animation.classList.add("washmachine-drum-animation");
+  washmachine.appendChild(washmachine_drum_animation);
+  
+  return washmachine;
+}
+
+function createDrier(number: number) {
+  let washmachine = document.createElement("div");
+  washmachine.classList.add("washmachine");
+
+  let washmachine_display = document.createElement("div");
+  washmachine_display.classList.add("washmachine-display");
+  washmachine_display.innerHTML = "Free";
+  washmachine.appendChild(washmachine_display);
+
+  let washmachine_buttons = document.createElement("div");
+  washmachine_buttons.classList.add("washmachine-buttons");
+  washmachine.appendChild(washmachine_buttons);
+  
+  for (let i = 0; i < 3; i++) {
+    let washmachine_button = document.createElement("div");
+    washmachine_button.classList.add("washmachine-button");
+    washmachine_buttons.appendChild(washmachine_button);
+  }
+
+  let washmachine_number = document.createElement("div");
+  washmachine_number.classList.add("washmachine-number");
+  washmachine_number.innerHTML = number + '';
+  washmachine.appendChild(washmachine_number);
+
+  let washmachine_drum = document.createElement("div");
+  washmachine_drum.classList.add("washmachine-door");
+  washmachine.appendChild(washmachine_drum);
+
+  let washmachine_drum_animation = document.createElement("div");
+  washmachine_drum_animation.classList.add("washmachine-door-animation");
   washmachine.appendChild(washmachine_drum_animation);
   
   return washmachine;

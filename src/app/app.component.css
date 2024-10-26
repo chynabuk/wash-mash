@@ -1,11 +1,101 @@
 .container{
-    margin-top: 30px;
-    padding: 10px 20px;
-    background-color: white;
-    border-radius: 5px;
+    position: absolute;
+    display: flex;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 80%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.floor {
+    position: absolute;
+    height: 20%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.floor::after {
+    content: "";
+    display: block;
+    height: 200%;
+    width: 200%;
+    background-image: url("../assets/img/floor.jpg");
+    background-size: 15cap;
+    background-repeat: repeat;
+    transform: perspective(400px) rotateX(35deg);
+}
+
+.direct-wall {
+    position: absolute;
+    height: 80%;
+    width: 84%;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: -1;
+    background-image: url("../assets/img/brick.jpg");
+    background-size: 20cap;
+    background-repeat: repeat;
+    border-left: 2px solid #111111;
+    border-right: 2px solid #111111;
+}
+
+.left-wall {
+    position: absolute;
+    height: 150%;
+    width: 8%;
+    top: -50%;
+    left: 0;
+    z-index: -2;
+    background-color: #111111;
+    clip-path: polygon(0 0, 100% 13.5%, 100% 86.5%, 0 100%); 
+}
+
+.left-wall::after {
+    content: "";
+    position: absolute;
+    left: 0%;
+    display: block;
+    height: 100%;
+    width: 200%;
+    z-index: -2;
+    background-image: url("../assets/img/brick.jpg");
+    background-size: 20cap;
+    background-repeat: repeat;
+    transform: perspective(400px) rotateY(45deg);
+}
+
+.right-wall {
+    position: absolute;
+    height: 150%;
+    width: 8%;
+    top: -50%;
+    right: 0;
+    z-index: -2;
+    background-color: #111111;
+    clip-path: polygon(100% 0, 0 13.5%, 0 86.5%, 100% 100%);
+}
+
+.right-wall::after {
+    content: "";
+    position: absolute;
+    right: 0%;
+    display: block;
+    height: 100%;
+    width: 200%;
+    z-index: -2;
+    background-image: url("../assets/img/brick.jpg");
+    background-size: 20cap;
+    background-repeat: repeat;
+    transform: perspective(400px) rotateY(-45deg);
+}
 
 
 /* .grid-container {
