@@ -18,6 +18,7 @@ export class MachinesService {
       status: Status.f,
       type: MachineType.w
     });
+
     this.addMachine({
       name: '2',
       status: Status.o,
@@ -26,7 +27,8 @@ export class MachinesService {
     this.addMachine({
       name: '3',
       status: Status.o,
-      type: MachineType.w
+      type: MachineType.w,
+      time: this.generateTime(1, 2)
     });
     this.addMachine({
       name: '4',
@@ -34,24 +36,24 @@ export class MachinesService {
       type: MachineType.w
     });
     this.addMachine({
-      name: '1',
+      name: '5',
       status: Status.f,
       type: MachineType.d
 
     });
     this.addMachine({
-      name: '2',
+      name: '6',
       status: Status.o,
       type: MachineType.d
 
     });
-    const now =  new Date();
-    now.setMinutes(now.getMinutes() + 1);
+    // const now =  new Date();
+    // now.setMinutes(now.getMinutes() + 1);
     this.addMachine({
-      name: '3',
+      name: '7',
       status: Status.o,
       type: MachineType.d,
-      time: now
+      time: this.generateTime(1, 2)
     });
     
   }
@@ -77,7 +79,7 @@ export class MachinesService {
           m.time = undefined;
           this.playRingtone();
         }
-        else m.time = this.generateTime();
+        else m.time = this.generateTime(90, 8);
       }
       return m;
     });
@@ -92,16 +94,17 @@ export class MachinesService {
   private addMachine(machine: Machine){
     if(machine.status === Status.o){
       if(!machine.time){
-        console.log(machine.time, machine.name);
-        machine.time = this.generateTime();
+        if(machine.name === '3') machine.time = this.generateTime(2, 1);
+        else machine.time = this.generateTime(8, 50);
       }
+      
     }
     this.machines.update((oldValues) => [...oldValues, machine]);
   }
 
-  private generateTime(){
+  private generateTime(min: number, max: number){
     const now = new Date();
-    now.setMinutes(now.getMinutes() + Math.random() * (90 - 8) + 8);
+    now.setMinutes(now.getMinutes() + Math.random() * (max - min) + min);
     return now;
   }
 }
